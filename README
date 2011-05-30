@@ -1,0 +1,41 @@
+B2BToolkit
+==========
+This is a set of tools intended to help in the production of artifacts for XML instance validation. Output from these tools can be later assembled to create Schematron or XSLT validation artifacts using free resources from:
+
+- http://www.cranesoftwrights.com/resources/index.htm
+- http://www.schematron.com/resources.html
+
+e2gc-cva.rb
+===========
+
+Creates Genericode files and Context Value Association from an .ods spreadsheet file.
+
+Input: OpenOffice file with one sheet per codelist and a special sheet specifying the context value associations
+Ouput: gc folder with genericode files and cva folder with cva file
+
+Usage: ./e2gc-cva <openoffice_file> <extension> <path> <pathcva>
+
+Where <openoffice_file> has a sheet per code list and an specific sheet to define the context value associations
+      <extension> the identifier of the extension that uses this cva
+      <path> is the folder where genericode files will be placed
+      <pathcva> is the folder where CVA file will be placed
+
+For spreadsheet layout see example file in samples folder.
+
+e2sch.rb
+========
+
+Ruby tool to create Schematron abstract rules and syntax binding from Spreadsheet
+ 
+Usage: ./e2sch <rules_file> <path> <extension> <codelist.sch>
+
+where <rules_file> is an spreadsheet file in Open Office format with the following sheets:
+   	  abstract: where abstract rules are defined
+     	  <syntax>: where define the XPATH expression for rules and contexts
+     	  artifacts: to define which artifacts should be build
+ 
+     <path> is used to define the place where to create the Schematron structure
+     <extension> the identifier for the extension used to prefix the files
+     <codelist.sch> is the name of the codelist to be applied with the set of rules
+
+
