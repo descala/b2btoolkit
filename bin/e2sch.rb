@@ -23,6 +23,7 @@ version = ">= 0"
 gem 'roo', version
 require 'roo'
 require 'fileutils'
+require_gem 'builder', '~> 2.0'
 
 include FileUtils
 
@@ -90,7 +91,7 @@ def main(fitxer,path,extension,codelist)
 			p.add_rule(r) if r
 			a = nil
 		end
-		a = Assert.new(assertion,message,severity)
+		a = Assert.new(assertion.to_s,message,severity)
 		r.add_assert(a) if a 
 	end
   end
@@ -136,7 +137,7 @@ def main(fitxer,path,extension,codelist)
 		if param != last_param
 			last_param = param
 			if prerequisite != nil then value = value+' and '+prerequisite+' or not('+prerequisite+')' end 
-			r = Param.new(param, value)
+			r = Param.new(param.to_s, value)
 			p.add_param(r) if r
 			a = nil
 		end
