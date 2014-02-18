@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# encoding: utf-8
 
 # Invinet XML Tools 
 # Purpose: Ruby tool to create Genericode and CVA files from an OpenOffice Spreadsheet
@@ -18,10 +19,11 @@
 
 
 require 'rubygems'
-version = ">= 0"
-gem 'roo', version
+require 'bundler/setup'
+
 require 'roo'
 require 'fileutils'
+require 'builder'
 
 include FileUtils
 
@@ -41,7 +43,7 @@ def main(fitxer, extension, path, pathcva)
   
   puts "\nCreating Genericode files from an OpenOffice spreadsheet...\n"
      
- if (path == nil) 
+  if (path == nil) 
       chdir "../gc"   
     else
 	  mkdir_p path
@@ -56,7 +58,6 @@ def main(fitxer, extension, path, pathcva)
       vl = ValueList.new(oo.sheets[sheet])      
       valuelist << vl if vl
             
-      codes = []  
       oo.default_sheet = oo.sheets[sheet]
       shortname = oo.cell(1,'B')
       version = oo.cell(3,'B')

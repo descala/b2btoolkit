@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# encoding: utf-8
 
 # Invinet XML Tools  
 # Purpose: Ruby tool to create Schematron abstract rules and syntax binding from Spreadsheet
@@ -19,10 +20,11 @@
 
 
 require 'rubygems'
-version = ">= 0"
-gem 'roo', version
+require 'bundler/setup'
+
 require 'roo'
 require 'fileutils'
+require 'builder'
 
 include FileUtils
 
